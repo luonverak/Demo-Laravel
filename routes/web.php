@@ -18,3 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home',[HomeController::class,'homePage']);
+Route::post('/add',[HomeController::class,'addData']);
