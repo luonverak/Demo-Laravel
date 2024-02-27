@@ -10,7 +10,7 @@
     <h1>Student Information</h1>
     <form action="/add" method="post" enctype="multipart/form-data" >
         @csrf
-        <input type="text" name="name" > <br> <br>
+        <input type="text" name="name"  > <br> <br>
         <select name="gender" >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
