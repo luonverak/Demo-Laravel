@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\UserModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
+    public function viewData()
+    {
+        $userModel = UserModel::all();
+
+        return view('view', ['userModel' => $userModel]);
+    }
     public function homePage()
     {
         return view('home');
@@ -30,6 +35,22 @@ class HomeController extends Controller
         ]);
 
 
-        return redirect()->back();
+        return redirect('/view');
+    }
+
+    public function getID($id)
+    {
+        $userModel = UserModel::where('id', $id)->first();
+        return view('delete', ['userModel' => $userModel]);
+    }
+    public function submitDelete(Request $request)
+    {
+        $id = $request->input('id');
+        if ($request->input('delete') == 'Yes,Delete it') {
+            UserModel::where('id', $id)->delete();
+            return redirect('/view');
+        } else {
+            return redirect('/view');
+        }
     }
 }

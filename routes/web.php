@@ -7,5 +7,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home',[HomeController::class,'homePage']);
-Route::post('/add',[HomeController::class,'addData']);
+
+Route::get('/view', [HomeController::class, 'viewData']);
+Route::get('/add', [HomeController::class, 'homePage']);
+Route::post('/add', [HomeController::class, 'addData']);
+Route::get('/delete/{id}', [HomeController::class, 'getID']);
+Route::post('/delete/submit', [HomeController::class, 'submitDelete']);
