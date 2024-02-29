@@ -32,7 +32,7 @@
                     </td>
                     <td>{{$user->created_at}}</td>
                     <td>
-                        <a href="">Update</a>
+                        <a href="/update/{{$user->id}}">Update</a>
                         <a href="/delete/{{$user->id}}">Delete</a>
                     </td>
                 </tr>

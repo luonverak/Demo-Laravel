@@ -53,4 +53,36 @@ class HomeController extends Controller
             return redirect('/view');
         }
     }
+    public function getIDUpdata($id)
+    {
+        $userModel = UserModel::where('id', $id)->first();
+        return view('update', ['userModel' => $userModel]);
+    }
+    public function updateData(Request $request)
+    {
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $gender = $request->input('gender');
+        $age = $request->input('age');
+        $profile = $request->file('profile');
+
+        if (empty($profile)) {
+            $fileName = $request->input('old_profile');
+        } else {
+            $fileName = rand(1, 10000) . '-' . $profile->getClientOriginalName();
+            $profile->move('images', $fileName);
+        }
+
+        $userModel = UserModel::where('id', $id)->update(
+            [
+                'name' => $name,
+                'gender' => $gender,
+                'age' => $age,
+                'profile' => $fileName
+            ]
+        );
+
+        return redirect('/view');
+
+    }
 }
